@@ -28,6 +28,8 @@ comments = ['Nice shot! @{}',
             ':raised_hands: Yes!',
             'I can feel your passion @{} :muscle:']
 
+like_tag_list = ['massagegun', 'sport', 'athele', 'fitness']
+
 # get an InstaPy session!
 # set headless_browser=True to run InstaPy in the background
 session = InstaPy(username=insta_username,
@@ -37,12 +39,18 @@ session = InstaPy(username=insta_username,
 with smart_run(session):
     """ Activity flow """
     # general settings
-    session.set_dont_include(["friend1", "friend2", "friend3"])
+    session.set_relationship_bounds(enabled=True,
+                                    delimit_by_numbers=True,
+                                    max_followers=4600,
+                                    min_followers=50,
+                                    min_following=50)
 
+    session.set_user_interact(amount=2, randomize=True, percentage=60)
     # activity
-    session.like_by_tags(["natgeo"], amount=10)
+    # like les post dans les hastage sont contenu dans le tableau
+    session.like_by_tags(like_tag_list, amount=10)
 
     # Joining Engagement Pods
     session.set_do_comment(enabled=True, percentage=35)
-    session.set_comments(comments)
-    session.join_pods(topic='sports', engagement_mode='no_comments')
+    session.set_comments(comments, media='Photo')
+    session.join_pods(topic='sports', engagement_mode='normal')
