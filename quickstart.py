@@ -35,7 +35,7 @@ session = InstaPy(username=insta_username,
                   headless_browser=False)
 
 with smart_run(session):
-    Activity flow
+    """ Activity flow """
     # general settings
     session.set_dont_include(["friend1", "friend2", "friend3"])
 
