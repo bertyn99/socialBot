@@ -1,4 +1,5 @@
 # imports
+from dotenv import load_dotenv
 from instapy import InstaPy
 from instapy import smart_run
 
